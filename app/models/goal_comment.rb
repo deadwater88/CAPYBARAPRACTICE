@@ -11,4 +11,11 @@
 #
 
 class GoalComment < ApplicationRecord
+  validates :goal_id, :author_id, :body, presence: true
+
+  belongs_to :goal
+  belongs_to :author,
+    class_name: :User
+
+  
 end

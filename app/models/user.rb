@@ -43,6 +43,17 @@ class User < ApplicationRecord
     user.is_password?(password) ? user : nil
   end
 
+  has_many :goals
 
+  has_many :comments,
+  foreign_key: :user_id,
+  class_name: :UserComment
+
+  has_many :authored_user_comments,
+    foreign_key: :author_id,
+    class_name: :UserComment
+  has_many :authored_goal_comments,
+    foreign_key: :author_id,
+    class_name: :GoalComment
 
 end

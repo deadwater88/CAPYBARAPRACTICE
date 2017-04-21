@@ -12,4 +12,11 @@
 #
 
 class Goal < ApplicationRecord
+  validates :user_id, :body, presence: true
+  #validates :public, :completed, inclusion: {in: [true, false]}
+
+  has_many :comments,
+    class_name: :GoalComment
+  belongs_to :user,
+    class_name: :User
 end
