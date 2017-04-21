@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <%= flash[:errors] %>
+    <%= current_user.username if current_user %>
+    <%= button_to "Log OUT", sessions_url, method: "delete"  %>
     <%= yield %>
   </body>
 </html>
