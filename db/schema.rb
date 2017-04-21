@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170421173444) do
+ActiveRecord::Schema.define(version: 20170421190311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goal_comments", force: :cascade do |t|
+    t.integer  "goal_id",    null: false
+    t.integer  "author_id",  null: false
+    t.text     "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_goal_comments_on_author_id", using: :btree
+    t.index ["goal_id"], name: "index_goal_comments_on_goal_id", using: :btree
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.integer  "user_id",                    null: false
+    t.text     "body",                       null: false
+    t.boolean  "completed",  default: false, null: false
+    t.boolean  "public",     default: false, null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_goals_on_user_id", using: :btree
+  end
+
+  create_table "user_comments", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "author_id",  null: false
+    t.text     "body",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_user_comments_on_author_id", using: :btree
+    t.index ["user_id"], name: "index_user_comments_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username",        null: false
