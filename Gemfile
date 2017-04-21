@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'rails-controller-testing'
   gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'
